@@ -1,10 +1,9 @@
 window.onload = function () {
     var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
-        'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 'u', 'v', 'w', 'x', 'y', 'z'];
+        'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     let categories;
     let chosenCategory;
-    let getHint;
     let word;
     let guess;
     let guesses = [];
@@ -14,10 +13,10 @@ window.onload = function () {
 
     //Get elements
 
-    let showLives = document.getElementsById("mylives");
-    let showCategory = document.getElementsById("categoryName");
-    let getHint = document.getElementsById("hint");
-    let showClue = document.getElementsById("clue");
+    let showLives = document.getElementById("mylives");
+    let showCategory = document.getElementById("categoryName");
+    let getHint = document.getElementById("hint");
+    let showClue = document.getElementById("clue");
 
     //Create alphabet
 
@@ -35,11 +34,11 @@ window.onload = function () {
             letters.appendChild(list);
         }
     }
-}
+
 
 //Select category
 
-let selectCategory = function () {
+let selectCat = function () {
     if (chosenCategory === categories[0]) {
         categoryName.innerHTML = "The chosen category is Premier League Football Teams";
     } else if (chosenCategory === categories[1]) {
@@ -77,6 +76,7 @@ comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
     if (lives < 1) {
         showLives.innerHTML = "GAME OVER";
+        
     }
     for (let i = 0; i < guesses.length; i++) {
         if (counter + space === guesses.length) {
@@ -88,11 +88,13 @@ comments = function () {
 //Animate
 
 let animate = function () {
-    let drawMe = lives;
-    drawArray[drawMe]();
+       if (lives > 0) {
+            let drawMe = lives;
+            drawArray[drawMe]();
+        } else {
+            drawArray[0](); //Maybe refactor this code?
+        }
 }
-
-
 
 
 
@@ -189,6 +191,7 @@ play = function () {
     comments();
     selectCat();
     canvas();
+    paintLeg = true;
 }
 
 play();
@@ -216,4 +219,6 @@ document.getElementById('reset').onclick = function () {
     showClue.innerHTML = "";
     context.clearRect(0, 0, 400, 400);
     play();
+}
+
 }
