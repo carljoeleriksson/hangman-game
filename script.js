@@ -33,3 +33,49 @@ let buttons = function () {
 }
 }
 
+let selectCategory = function() {
+    if (chosenCategory === categories[0]) {
+        categoryName.innerHTML = "The chosen category is Premier League Football Teams";
+    } else if (chosenCategory === categories[1]) {
+        categoryName.innerHTML = "The chosen category is Films";
+      } else if (chosenCategory === categories[2]) {
+        categoryName.innerHTML = "The chosen category is Cities";
+      }
+    }
+
+    result = function () {
+        wordHolder = document.getElementById("hold");
+        correct = document.createElement("ul");
+    
+        for (let i = 0; i < word.length; i++) {
+          correct.setAttribute("id", "my-word");
+          guess = document.createElement("li");
+          guess.setAttribute("class", "guess");
+          if (word[i] === "-") {
+            guess.innerHTML = "-";
+            space = 1;
+          } else {
+            guess.innerHTML = "_";
+          }    
+          guesses.push(guess);
+          wordHolder.appendChild(correct);
+          correct.appendChild(guess);
+        }
+      }
+ 
+       comments = function () {
+        showLives.innerHTML = "You have " + lives + " lives";
+        if (lives < 1) {
+          showLives.innerHTML = "GAME OVER";
+        }
+        for (let i = 0; i < guesses.length; i++) {
+          if (counter + space === guesses.length) {
+            showLives.innerHTML = "YOU WIN!";
+          }
+        }
+      }
+
+      let animate = function () {
+        let drawMe = lives ;
+        drawArray[drawMe]();
+      }
