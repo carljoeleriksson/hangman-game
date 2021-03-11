@@ -217,5 +217,5 @@ let selectCategory = function() {
   
       var categoryIndex = categories.indexOf(chosenCategory);
       var hintIndex = chosenCategory.indexOf(word);
-      showClue.innerHTML = "Clue: - " +  hints [catagoryIndex][hintIndex];
+      showClue.innerHTML = "Clue: - " +  hints [categoryIndex][hintIndex];
     };
