@@ -97,100 +97,74 @@ let animate = function () {
 
 
 //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Hangman 
+// The HTML <canvas> element is used to draw graphics via JavaScript.
+canvas = function(){
+    myStickman = document.querySelector('#stickman');
+    context = myStickman.getContext('2d');
+    context.beginPath();
+    context.stokeStyle = "#f7f1e3";
+    context.lineWidth = 2;
+};
+
+head = function() {
+    myStickman = document.querySelector('#stickman');
+    context = myStickman.getContext('2d');
+    context.beginPath();
+    context.arc(60, 25, 10, 0, Math.PI*2, true);
+    context.stroke();
+};
+
+draw = function($pathFromX, $pathFromY, $pathToX, $pathToY) {
+    context.moveTo($pathFromX, $pathFromY);
+    context.lineTo($pathToX, $pathToY);
+    context.stroke();
+}
+
+frame1 = function() {draw (0, 150, 150, 150);};
+
+frame2 = function() {draw (10, 0, 10, 600);};
+
+frame3 = function() {draw (0, 5, 70, 5);};
+ 
+frame4 = function() {draw (60, 5, 60, 15);};
+    
+torso = function() {draw (60, 36, 60, 70);};
+    
+rightArm = function () {draw(60, 46, 100, 50);};
+
+leftArm = function () {draw(60, 46, 20, 50);};
+
+rightLeg = function () {draw(60, 70, 100, 100);};
+
+leftLeg = function () {draw(60, 70, 20, 100);};
+
+drawArray = [rightLeg, leftLeg, rightArm, leftArm, torso, head, frame4, frame3, frame2, frame1];
+
+
+//OnClick Function
+
+check = function() {
+    list.onclick = function(){
+        let guessLetter = (this.innerHTML); 
+        this.setAttribute("class", "active");
+        this.onclick = null;
+        for (let i = 0; i < word.length; i++) {
+            if (word[i] === guessLetter) {
+                guesses[i].innerHTML = guessLetter;
+                counter += 1;
+            }
+        }
+        let j = (word.indexOf(guessLetter));
+        if (j === -1) {
+            lives -= 1;
+            comments();
+            animate();
+        } else {
+            comments();
+        }
+    }
+}
 
 //Play
 
