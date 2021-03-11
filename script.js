@@ -79,3 +79,92 @@ let selectCategory = function() {
         let drawMe = lives ;
         drawArray[drawMe]();
       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      check = function() {
+          list.onclick = function() {
+              let guess = (this.innerHTML);
+              this.setAttribute("class", "active");
+              this.onclick=null;
+              for (let i = 0; i < word.length; i++) {
+                if (word[i] === guess) {
+                  guesses[i].innerHTML = guess;
+                  counter += 1;
+                } 
+              }
+              let j = (word.indexOf(guess));
+              if (j === -1) {
+                lives -= 1;
+                comments();
+                animate();
+              } else {
+                comments();
+              }
+            }
+          }
