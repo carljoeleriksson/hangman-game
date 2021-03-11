@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <h1>Hangman Game</h1>
+            <p>Use the alphabet below to guess the word, or click hint 
+                to get a clue!</p>
+        </div>
+    </header>
+    <main>
+        <div class="wrapper">
+            <div id="buttons"></div>
+            <p id="categoryName"></p>
+            <div id="hold"></div>
+            <p id="mylives"></p>
+            <p id="clue">Clue -</p>
+            <canvas id="stickman"><i>This text will show if browser does 
+                not support HTML5 Canvas tag.</i></canvas>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <button id="hint">HINT</button>
+            <button id="reset">PLAY AGAIN</button>
+        </div>
+    </footer>
+</body>
+</html>
