@@ -147,24 +147,62 @@ let selectCategory = function() {
 
 
 
-      check = function() {
-          list.onclick = function() {
-              let guess = (this.innerHTML);
-              this.setAttribute("class", "active");
-              this.onclick=null;
-              for (let i = 0; i < word.length; i++) {
-                if (word[i] === guess) {
-                  guesses[i].innerHTML = guess;
-                  counter += 1;
-                } 
-              }
-              let j = (word.indexOf(guess));
-              if (j === -1) {
-                lives -= 1;
-                comments();
-                animate();
-              } else {
-                comments();
-              }
-            }
-          }
+  
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      play = function () {
+        categories = [
+            ["everton", "liverpool", "swansea", "chelsea", "hull", "manchester-city", "newcastle-united"],
+            ["alien", "dirty-harry", "gladiator", "finding-nemo", "jaws"],
+            ["manchester", "milan", "madrid", "amsterdam", "prague"]
+        ];
+    
+        chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+        word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
+        word = word.replace(/\s/g, "-");
+        console.log(word);
+        buttons();
+    
+        guesses = [ ];
+        lives = 10;
+        counter = 0;
+        space = 0;
+        result();
+        comments();
+        selectCat();
+        canvas();
+      }
+    
+      play();
