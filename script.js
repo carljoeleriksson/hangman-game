@@ -36,7 +36,7 @@ window.onload = function () {
     }
 
 
-//Select category
+//Select Category
 
 let selectCat = function () {
     if (chosenCategory === categories[0]) {
@@ -75,12 +75,14 @@ result = function () {
 comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
     if (lives < 1) {
-        showLives.innerHTML = "GAME OVER";
+        showLives.innerHTML = null;
+        document.getElementById("buttons").innerHTML = '<span>You lost!</span>';
         
     }
     for (let i = 0; i < guesses.length; i++) {
         if (counter + space === guesses.length) {
-            showLives.innerHTML = "YOU WIN!";
+            showLives.innerHTML = null;
+            document.getElementById("buttons").innerHTML = '<span>You win!</span>';
         }
     }
 }
@@ -92,7 +94,7 @@ let animate = function () {
             let drawMe = lives;
             drawArray[drawMe]();
         } else {
-            drawArray[0](); //Maybe refactor this code?
+            drawArray[0](); //Maybe refactor this code, because it keeps drawing the right leg even if game is over.
         }
 }
 
@@ -105,21 +107,21 @@ canvas = function(){
     myStickman = document.querySelector('#stickman');
     context = myStickman.getContext('2d');
     context.beginPath();
-    context.stokeStyle = "#f7f1e3";
-    context.lineWidth = 2;
+    context.strokeStyle = "#f7f1e3";
+    context.lineWidth = 5;
 };
 
 head = function() {
     myStickman = document.querySelector('#stickman');
     context = myStickman.getContext('2d');
     context.beginPath();
-    context.arc(60, 25, 10, 0, Math.PI*2, true);
+    context.arc(140, 25, 10, 0, Math.PI*2, true);
     context.stroke();
 };
 
 draw = function($pathFromX, $pathFromY, $pathToX, $pathToY) {
-    context.moveTo($pathFromX, $pathFromY);
-    context.lineTo($pathToX, $pathToY);
+    context.moveTo($pathFromX + 80, $pathFromY);
+    context.lineTo($pathToX + 80, $pathToY);
     context.stroke();
 }
 
@@ -182,7 +184,7 @@ play = function () {
     word = word.replace(/\s/g, "-");
     console.log(word);
     buttons();
-
+    showClue.innerHTML = "";
     guesses = [];
     lives = 10;
     counter = 0;
@@ -208,16 +210,19 @@ hint.onclick = function () {
 
     var categoryIndex = categories.indexOf(chosenCategory);
     var hintIndex = chosenCategory.indexOf(word);
-    showClue.innerHTML = "Clue: - " + hints[categoryIndex][hintIndex];
+    showClue.innerHTML = "Clue: " + hints[categoryIndex][hintIndex];
 };
 
 // Reset
 
 document.getElementById('reset').onclick = function () {
     correct.parentNode.removeChild(correct);
-    letters.parentNode.removeChild(letters);
+    //letters.parentNode.removeChild(letters);
+    document.getElementById("buttons").innerHTML = null;
     showClue.innerHTML = "";
     context.clearRect(0, 0, 400, 400);
+    lives = 10;
+    guesses = [];
     play();
 }
 
